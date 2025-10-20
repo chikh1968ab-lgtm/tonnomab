@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon premier site moderne</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+      color: #333;
+    }
+
+    /* --- Barre de navigation --- */
+    nav {
+      background: linear-gradient(90deg, #00796B, #004D40);
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #FFEB3B;
+    }
+
+    /* --- Contenu principal --- */
+    main {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #004D40;
+    }
+
+    img {
+      width: 350px;
+      border-radius: 20px;
+      margin-top: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      transition: transform 0.4s;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    button {
+      background: linear-gradient(90deg, #4CAF50, #2E7D32);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #66BB6A, #388E3C);
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 50px 20px;
+      background-color: white;
+      margin: 30px auto;
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    form {
+      text-align: left;
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    footer {
+      background-color: #004D40;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre de navigation -->
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Section Accueil -->
+  <main id="accueil">
+    <h1>Bienvenue sur mon site moderne ✨</h1>
+    <p>Un petit projet pour apprendre le HTML, le CSS et le JavaScript étape par étape.</p>
+
+    <img src="https://www.w3schools.com/html/img_chania.jpg" alt="Photo d’un port à Chania">
+
+    <br>
+    <button onclick="direBonjour()">Clique ici</button>
+
+    <p id="message"></p>
+  </main>
+
+  <!-- Section À propos -->
+  <section id="apropos">
+    <h2>À propos</h2>
+    <p>Ce site est un exercice de formation.  
+    Il m’aide à comprendre la structure d’un site web moderne : HTML pour le contenu, CSS pour le style, et JavaScript pour les interactions.</p>
+  </section>
+
+  <!-- Section Contact -->
+  <section id="contact">
+    <h2>Contactez-moi</h2>
+    <form onsubmit="envoyerMessage(); return false;">
+      <label for="nom">Votre nom :</label>
+      <input type="text" id="nom" placeholder="Entrez votre nom">
+
+      <label for="texte">Votre message :</label>
+      <textarea id="texte" rows="4" placeholder="Écrivez votre message ici..."></textarea>
+
+      <button type="submit">Envoyer</button>
+    </form>
+
+    <p id="reponse"></p>
+  </section>
+
+  <footer>
+    &copy; 2025 - Mon premier site moderne | Créé avec ❤️ en HTML, CSS et JS
+  </footer>
+
+  <script>
+    function direBonjour() {
+      document.getElementById("message").innerText = "Bonjour à toi 👋 !";
+    }
+
+    function envoyerMessage() {
+      const nom = document.getElementById("nom").value;
+      const texte = document.getElementById("texte").value;
+      const zoneReponse = document.getElementById("reponse");
+
+      if (nom && texte) {
+        zoneReponse.innerText = "Merci " + nom + " ! Ton message a bien été reçu : " + texte;
+      } else {
+        zoneReponse.innerText = "❗ Merci de remplir les deux champs avant d’envoyer.";
+      }
+    }
+  </script>
+
+</body>
+</html>
