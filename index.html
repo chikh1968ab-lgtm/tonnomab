@@ -110,11 +110,12 @@
   </style>
 </head>
 <body>
- 
-<h2>Contactez-moi</h2>
-<form action="https://formspree.io/f/mkgqaqvk" method="POST">
+ <h2>Contactez-moi</h2>
+
+<form id="contact-form" action="https://formspree.io/f/mabc123x" method="POST">
   <label for="name">Nom :</label>
   <input id="name" type="text" name="name" required>
+
   <label for="email">Email :</label>
   <input id="email" type="email" name="email" required>
 
@@ -123,6 +124,31 @@
 
   <button type="submit">Envoyer</button>
 </form>
+
+<p id="form-message" style="color: green; font-weight: bold; display: none;">
+  Merci, votre message a été envoyé avec succès !
+</p>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const message = document.getElementById('form-message');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      form.reset();
+      message.style.display = 'block';
+    } else {
+      alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+  });
+</script>
+
   <!-- Barre de navigation -->
   <nav>
     <a href="#accueil">Accueil</a>
