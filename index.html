@@ -11,7 +11,7 @@
       background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
       color: #333;
     }
- 
+
     /* --- Barre de navigation --- */
     nav {
       background: linear-gradient(90deg, #00796B, #004D40);
@@ -98,6 +98,14 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    #form-message {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+      display: none;
     }
 
     footer {
@@ -110,44 +118,6 @@
   </style>
 </head>
 <body>
- <h2>Contactez-moi</h2>
-
-<form id="contact-form" action="https://formspree.io/f/mabc123x" method="POST">
-  <label for="name">Nom :</label>
-  <input id="name" type="text" name="name" required>
-
-  <label for="email">Email :</label>
-  <input id="email" type="email" name="email" required>
-
-  <label for="message">Message :</label>
-  <textarea id="message" name="message" rows="5" required></textarea>
-
-  <button type="submit">Envoyer</button>
-</form>
-
-<p id="form-message" style="color: green; font-weight: bold; display: none;">
-  Merci, votre message a été envoyé avec succès !
-</p>
-
-<script>
-  const form = document.getElementById('contact-form');
-  const message = document.getElementById('form-message');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (response.ok) {
-      form.reset();
-      message.style.display = 'block';
-    } else {
-      alert("Une erreur est survenue. Veuillez réessayer.");
-    }
-  });
-</script>
 
   <!-- Barre de navigation -->
   <nav>
@@ -179,17 +149,21 @@
   <!-- Section Contact -->
   <section id="contact">
     <h2>Contactez-moi</h2>
-    <form onsubmit="envoyerMessage(); return false;">
-      <label for="nom">Votre nom :</label>
-      <input type="text" id="nom" placeholder="Entrez votre nom">
 
-      <label for="texte">Votre message :</label>
-      <textarea id="texte" rows="4" placeholder="Écrivez votre message ici..."></textarea>
+    <form id="contact-form" action="https://formspree.io/f/mkgqaqvk" method="POST">
+      <label for="name">Nom :</label>
+      <input id="name" type="text" name="name" required>
+
+      <label for="email">Email :</label>
+      <input id="email" type="email" name="email" required>
+
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
 
       <button type="submit">Envoyer</button>
     </form>
 
-    <p id="reponse"></p>
+    <p id="form-message">Merci, votre message a été envoyé avec succès !</p>
   </section>
 
   <footer>
@@ -201,22 +175,32 @@
       document.getElementById("message").innerText = "Bonjour à toi 👋 !";
     }
 
-    function envoyerMessage() {
-      const nom = document.getElementById("nom").value;
-      const texte = document.getElementById("texte").value;
-      const zoneReponse = document.getElementById("reponse");
+    // Gestion du formulaire Formspree + message de confirmation
+    const form = document.getElementById('contact-form');
+    const msg = document.getElementById('form-message');
 
-      if (nom && texte) {
-        zoneReponse.innerText = "Merci " + nom + " ! Ton message a bien été reçu : " + texte;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.reset();
+        msg.style.display = 'block';
       } else {
-        zoneReponse.innerText = "❗ Merci de remplir les deux champs avant d’envoyer.";
+        alert("❗ Une erreur est survenue. Veuillez réessayer.");
       }
-    }
+    });
   </script>
-<p style="text-align:center; color:gray;">
-Dernière mise à jour : 19 octobre 2025
-</p>
+
+  <p style="text-align:center; color:gray;">
+    Dernière mise à jour : 21 octobre 2025
+  </p>
+
 </body>
 </html>
+
 
 
